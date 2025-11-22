@@ -45,7 +45,7 @@ export function createServer() {
   });
 
   // Forum API routes
-  app.post("/api/upload", upload.single("media"), handleUpload);
+  app.post("/api/upload", upload.fields([{ name: "media", maxCount: 1 }, { name: "thumbnail", maxCount: 1 }]), handleUpload);
   app.get("/api/posts", handleGetPosts);
   app.get("/api/servers", handleGetServers);
 
