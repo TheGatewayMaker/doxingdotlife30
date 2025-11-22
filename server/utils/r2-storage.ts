@@ -243,6 +243,34 @@ export const getServersList = async (): Promise<string[]> => {
   }
 };
 
+interface PostMetadataWithThumbnail extends PostMetadata {
+  thumbnail?: string;
+}
+
+export const uploadPostMetadataWithThumbnail = async (
+  postId: string,
+  metadata: PostMetadata,
+  thumbnailUrl: string,
+): Promise<void> => {
+  const client = getR2Client();
+  const bucketName = getBucketName();
+  const key = `posts/${postId}/metadata.json`;
+
+  const metadataWithThumbnail: PostMetadataWithThumbnail = {
+    ...metadata,
+    thumbnail: thumbnailUrl,
+  };
+
+  await client.send(
+    new PutObjectCommand({
+      Bucket: bucketName,
+      Key: key,
+      Body: JSON.stringify(metadataWithThumbnail, null, 2),
+      ContentType: "application/json",
+    }),
+  );
+};
+
 export interface PostWithThumbnail extends PostMetadata {
   thumbnail?: string;
 }
@@ -257,7 +285,10 @@ export const getPostWithThumbnail = async (
 
   let thumbnail: string | undefined;
 
-  if (metadata.mediaFiles && metadata.mediaFiles.length > 0) {
+  const metadataWithThumbnail = metadata as PostMetadataWithThumbnail;
+  if (metadataWithThumbnail.thumbnail) {
+    thumbnail = metadataWithThumbnail.thumbnail;
+  } else if (metadata.mediaFiles && metadata.mediaFiles.length > 0) {
     const firstMediaFile = metadata.mediaFiles[0];
     thumbnail = getMediaUrl(`posts/${postId}/${firstMediaFile}`);
   }
