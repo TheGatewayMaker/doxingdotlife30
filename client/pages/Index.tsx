@@ -1,10 +1,18 @@
 import { useState, useEffect } from "react";
-import { Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Post, PostsResponse } from "@shared/api";
+import {
+  SearchIcon,
+  FilterIcon,
+  GlobeIcon,
+  MapPinIcon,
+  ServerIcon,
+  FireIcon,
+  CloseIcon,
+} from "@/components/Icons";
 
 const COUNTRIES = [
   "Afghanistan",
