@@ -461,14 +461,18 @@ export default function Index() {
               className="mb-0 animate-fadeIn"
               style={{ animationDelay: "0.3s" }}
             >
-              <h3 className="text-sm font-black text-foreground mb-6 uppercase tracking-widest">
-                📂 Filter by Category
-              </h3>
+              <div className="flex items-center gap-2 mb-6">
+                <FilterIcon className="w-5 h-5 text-accent" />
+                <h3 className="text-sm font-black text-foreground uppercase tracking-widest">
+                  Filter by Category
+                </h3>
+              </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {/* Country Dropdown */}
                 <div className="relative group">
-                  <label className="text-sm font-bold text-foreground block mb-2">
-                    🌍 By Country
+                  <label className="text-sm font-bold text-foreground block mb-3 flex items-center gap-2">
+                    <GlobeIcon className="w-4 h-4 text-accent" />
+                    By Country
                   </label>
                   <input
                     type="text"
