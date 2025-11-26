@@ -3,7 +3,6 @@
   functions = "netlify/functions"
   publish = "dist/spa"
 
-
 [functions]
   node_bundler = "esbuild"
   memory = 3008
@@ -13,7 +12,7 @@
   name = "api"
   memory = 3008
   timeout = 60
-  
+
 [[redirects]]
   force = true
   from = "/api/*"
