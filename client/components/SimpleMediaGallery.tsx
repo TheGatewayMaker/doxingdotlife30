@@ -25,15 +25,21 @@ export default function SimpleMediaGallery({
   mediaFiles,
   postTitle,
   thumbnails = {},
+  thumbnailUrl,
 }: SimpleMediaGalleryProps) {
+  // Filter out the thumbnail from the media files
+  const filteredMediaFiles = mediaFiles.filter(
+    (file) => !thumbnailUrl || file.url !== thumbnailUrl
+  );
+
   const [selectedMediaIndex, setSelectedMediaIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const mediaContainerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  if (mediaFiles.length === 0) return null;
+  if (filteredMediaFiles.length === 0) return null;
 
-  const currentMedia = mediaFiles[selectedMediaIndex];
+  const currentMedia = filteredMediaFiles[selectedMediaIndex];
   const isImage = currentMedia.type.startsWith("image/");
   const isVideo = currentMedia.type.startsWith("video/");
   const isAudio = currentMedia.type.startsWith("audio/");
