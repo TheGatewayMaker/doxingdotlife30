@@ -99,11 +99,30 @@ export default function PostDetail() {
     );
   }
 
+  const handleShare = async () => {
+    const url = window.location.href;
+    try {
+      await navigator.clipboard.writeText(url);
+      // Show success feedback (you can add a toast notification here)
+      alert("Link copied to clipboard!");
+    } catch (err) {
+      console.error("Failed to copy URL:", err);
+      // Fallback: open the native share dialog if copy fails
+      if (navigator.share) {
+        navigator.share({
+          title: post.title,
+          text: post.description.substring(0, 100),
+          url: url,
+        });
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col animate-fadeIn">
       <Header />
       <main className="flex-1 w-full">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
           {/* Back Button */}
           <button
             onClick={() => navigate("/")}
