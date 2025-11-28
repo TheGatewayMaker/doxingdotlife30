@@ -303,7 +303,10 @@ export default function AllPosts() {
         {/* Hero Section */}
         <div className="bg-[#000000] pt-8 pb-8 md:pt-16 md:pb-12 border-b border-[#666666]">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="animate-slideInLeftFade" style={{ animationDelay: "0.1s" }}>
+            <div
+              className="animate-slideInLeftFade"
+              style={{ animationDelay: "0.1s" }}
+            >
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-3 text-white tracking-tighter leading-tight">
                 All Posts
               </h1>
@@ -564,7 +567,10 @@ export default function AllPosts() {
 
               {/* Pagination */}
               {totalPages > 1 && (
-                <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 animate-slideInUp" style={{ animationDelay: "0.4s" }}>
+                <div
+                  className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 animate-slideInUp"
+                  style={{ animationDelay: "0.4s" }}
+                >
                   <button
                     onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
                     disabled={currentPage === 1}
@@ -603,8 +609,16 @@ export default function AllPosts() {
               )}
             </>
           ) : (
-            <div className="text-center py-16 animate-popIn" style={{ animationDelay: "0.2s" }}>
-              <div className="text-5xl sm:text-6xl mb-4 animate-slideInDown" style={{ animationDelay: "0.3s" }}>📋</div>
+            <div
+              className="text-center py-16 animate-popIn"
+              style={{ animationDelay: "0.2s" }}
+            >
+              <div
+                className="text-5xl sm:text-6xl mb-4 animate-slideInDown"
+                style={{ animationDelay: "0.3s" }}
+              >
+                📋
+              </div>
               <p className="text-gray-400 text-base sm:text-lg">
                 No posts match your search criteria. Try adjusting your filters.
               </p>

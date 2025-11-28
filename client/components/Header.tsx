@@ -48,7 +48,10 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-6 xl:gap-8 animate-fadeIn" style={{ animationDelay: "0.2s" }}>
+        <nav
+          className="hidden lg:flex items-center gap-6 xl:gap-8 animate-fadeIn"
+          style={{ animationDelay: "0.2s" }}
+        >
           <Link
             to="/"
             className="flex items-center gap-2 text-sm font-semibold text-[#979797] hover:text-white transition-colors duration-200 hover:scale-105"
@@ -123,7 +126,10 @@ export default function Header() {
             />
 
             {/* Sidebar */}
-            <div className="fixed left-0 top-16 bottom-0 w-64 sm:w-72 bg-[#000000] border-r border-[#666666] lg:hidden z-40 animate-slideInLeft shadow-2xl flex flex-col" style={{ animationDuration: "0.4s" }}>
+            <div
+              className="fixed left-0 top-16 bottom-0 w-64 sm:w-72 bg-[#000000] border-r border-[#666666] lg:hidden z-40 animate-slideInLeft shadow-2xl flex flex-col"
+              style={{ animationDuration: "0.4s" }}
+            >
               <nav className="p-4 space-y-2 overflow-y-auto flex-1">
                 <Link
                   to="/"

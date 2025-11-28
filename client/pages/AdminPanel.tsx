@@ -287,7 +287,10 @@ export default function AdminPanel() {
         {/* Hero Section */}
         <div className="bg-background py-4 md:py-6 border-b border-border/40">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="animate-slideInLeftFade" style={{ animationDelay: "0.1s" }}>
+            <div
+              className="animate-slideInLeftFade"
+              style={{ animationDelay: "0.1s" }}
+            >
               <div className="flex items-center gap-2 mb-3">
                 <div>
                   <h1 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight leading-tight">
@@ -422,10 +425,16 @@ export default function AdminPanel() {
                       </svg>
                     </div>
                   </div>
-                  <h2 className="text-lg font-bold text-foreground mb-2 animate-popIn" style={{ animationDelay: "0.2s" }}>
+                  <h2
+                    className="text-lg font-bold text-foreground mb-2 animate-popIn"
+                    style={{ animationDelay: "0.2s" }}
+                  >
                     No Posts Found
                   </h2>
-                  <p className="text-xs text-muted-foreground max-w-sm mx-auto animate-slideInUp" style={{ animationDelay: "0.3s" }}>
+                  <p
+                    className="text-xs text-muted-foreground max-w-sm mx-auto animate-slideInUp"
+                    style={{ animationDelay: "0.3s" }}
+                  >
                     {searchQuery || selectedCountry
                       ? "Your search didn't match any posts. Try adjusting your filters."
                       : "No posts available at the moment."}
@@ -468,7 +477,10 @@ export default function AdminPanel() {
 
               {/* Pagination */}
               {totalPages > 1 && (
-                <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-2 sm:gap-3 animate-slideInUp pt-6 border-t border-border/40" style={{ animationDelay: "0.4s" }}>
+                <div
+                  className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-2 sm:gap-3 animate-slideInUp pt-6 border-t border-border/40"
+                  style={{ animationDelay: "0.4s" }}
+                >
                   <button
                     onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
                     disabled={currentPage === 1}

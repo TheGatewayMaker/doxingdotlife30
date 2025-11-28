@@ -303,7 +303,10 @@ export default function Index() {
         {/* Hero Section */}
         <div className="bg-[#000000] py-8 md:py-16 border-b border-[#666666]">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="animate-slideInLeftFade" style={{ animationDelay: "0.1s" }}>
+            <div
+              className="animate-slideInLeftFade"
+              style={{ animationDelay: "0.1s" }}
+            >
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-4 text-white tracking-tighter leading-tight">
                 Doxing Dot Life
               </h1>
@@ -329,7 +332,10 @@ export default function Index() {
             </div>
 
             {/* Filters Section */}
-            <div className="animate-slideInUp" style={{ animationDelay: "0.3s" }}>
+            <div
+              className="animate-slideInUp"
+              style={{ animationDelay: "0.3s" }}
+            >
               <p className="text-xs sm:text-sm font-bold text-[#666666] uppercase tracking-wider mb-4">
                 Refine Your Search
               </p>
@@ -580,7 +586,10 @@ export default function Index() {
 
               {/* Pagination */}
               {totalPages > 1 && (
-                <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 animate-slideInUp" style={{ animationDelay: "0.4s" }}>
+                <div
+                  className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 animate-slideInUp"
+                  style={{ animationDelay: "0.4s" }}
+                >
                   <button
                     onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
                     disabled={currentPage === 1}
@@ -619,8 +628,16 @@ export default function Index() {
               )}
             </>
           ) : (
-            <div className="text-center py-16 sm:py-20 animate-popIn" style={{ animationDelay: "0.2s" }}>
-              <div className="text-5xl sm:text-6xl mb-4 animate-slideInDown" style={{ animationDelay: "0.3s" }}>🔍</div>
+            <div
+              className="text-center py-16 sm:py-20 animate-popIn"
+              style={{ animationDelay: "0.2s" }}
+            >
+              <div
+                className="text-5xl sm:text-6xl mb-4 animate-slideInDown"
+                style={{ animationDelay: "0.3s" }}
+              >
+                🔍
+              </div>
               <p className="text-[#979797] text-sm sm:text-base max-w-lg mx-auto">
                 No posts match your current search filters. Try adjusting your
                 search terms or filters.

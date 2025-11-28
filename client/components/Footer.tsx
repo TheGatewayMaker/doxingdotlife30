@@ -17,7 +17,10 @@ export default function Footer() {
     <footer className="w-full bg-[#000000] border-t border-[#666666] mt-16 shadow-lg animate-slideInUp">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 mb-8">
-          <div className="animate-slideInLeftFade" style={{ animationDelay: "0.1s" }}>
+          <div
+            className="animate-slideInLeftFade"
+            style={{ animationDelay: "0.1s" }}
+          >
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 shadow-lg">
                 <img
