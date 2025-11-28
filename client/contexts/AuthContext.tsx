@@ -30,7 +30,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     if (!auth) {
       console.warn(
-        "Firebase Auth is not initialized. Authentication features will be unavailable.",
+        "Firebase auth is not initialized. Authentication features will be unavailable.",
       );
       setIsLoading(false);
       return;

@@ -18,49 +18,31 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-// Validate Firebase config
-const isValidFirebaseConfig = Object.values(firebaseConfig).every(
-  (value) => value && typeof value === "string" && value.length > 0,
+// Check if Firebase config is valid
+const isFirebaseConfigValid = Object.values(firebaseConfig).every(
+  (val) => val && val !== undefined && val !== "",
 );
 
-if (!isValidFirebaseConfig) {
-  console.error(
-    "Firebase configuration is missing or incomplete. Please set the following environment variables:",
-    "VITE_FIREBASE_API_KEY, VITE_FIREBASE_AUTH_DOMAIN, VITE_FIREBASE_PROJECT_ID, VITE_FIREBASE_STORAGE_BUCKET, VITE_FIREBASE_MESSAGING_SENDER_ID, VITE_FIREBASE_APP_ID",
-  );
-}
-
-// Initialize Firebase
-let app: ReturnType<typeof initializeApp> | null = null;
-let authInitialized = false;
-
-try {
-  app = initializeApp(firebaseConfig);
-  authInitialized = true;
-} catch (error) {
-  console.error("Failed to initialize Firebase:", error);
-  authInitialized = false;
-}
-
-// Initialize Firebase Auth (only if app initialized successfully)
-export let auth: Auth | null = null;
-
-if (authInitialized && app) {
-  try {
-    auth = getAuth(app);
-  } catch (error) {
-    console.error("Failed to initialize Firebase Auth:", error);
-    auth = null;
-  }
-}
-
-// Initialize Google Auth Provider (only if auth is initialized)
+let auth: Auth | null = null;
 let googleProvider: GoogleAuthProvider | null = null;
 
-if (auth) {
-  googleProvider = new GoogleAuthProvider();
-  googleProvider.addScope("profile");
-  googleProvider.addScope("email");
+if (isFirebaseConfigValid) {
+  try {
+    const app = initializeApp(firebaseConfig);
+    auth = getAuth(app);
+
+    googleProvider = new GoogleAuthProvider();
+    googleProvider.addScope("profile");
+    googleProvider.addScope("email");
+  } catch (error) {
+    console.error("Firebase initialization error:", error);
+    auth = null;
+    googleProvider = null;
+  }
+} else {
+  console.warn(
+    "Firebase configuration is incomplete. Some features will be disabled. Please set all VITE_FIREBASE_* environment variables.",
+  );
 }
 
 // Authorized email domains/accounts
@@ -77,7 +59,7 @@ const AUTHORIZED_EMAILS = import.meta.env.VITE_AUTHORIZED_EMAILS
 export const signInWithGoogle = async (): Promise<User> => {
   if (!auth || !googleProvider) {
     throw new Error(
-      "Firebase is not initialized. Please configure Firebase environment variables.",
+      "Firebase authentication is not configured. Please set up Firebase environment variables.",
     );
   }
 
@@ -111,9 +93,7 @@ export const signInWithGoogle = async (): Promise<User> => {
  */
 export const signOutUser = async (): Promise<void> => {
   if (!auth) {
-    throw new Error(
-      "Firebase is not initialized. Please configure Firebase environment variables.",
-    );
+    throw new Error("Firebase authentication is not configured.");
   }
 
   try {
@@ -149,9 +129,7 @@ export const isEmailAuthorized = (email: string): boolean => {
  */
 export const getIdToken = async (): Promise<string | null> => {
   if (!auth) {
-    console.warn(
-      "Firebase is not initialized. Cannot get ID token. Please configure Firebase environment variables.",
-    );
+    console.warn("Firebase authentication is not configured.");
     return null;
   }
 
@@ -164,3 +142,8 @@ export const getIdToken = async (): Promise<string | null> => {
     return null;
   }
 };
+
+/**
+ * Export auth instance (may be null if Firebase is not configured)
+ */
+export { auth };
