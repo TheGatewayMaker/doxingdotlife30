@@ -119,7 +119,7 @@ export default function Header() {
                 <Link
                   to="/"
                   onClick={closeSidebar}
-                  className="flex items-center gap-3 w-full px-4 py-3 text-gray-300 font-semibold hover:bg-blue-600/20 hover:text-white rounded-lg transition-all duration-200"
+                  className="flex items-center gap-3 w-full px-4 py-3 text-gray-400 font-semibold hover:bg-gray-800 hover:text-white rounded-lg transition-all duration-200"
                 >
                   <HomeIcon className="w-5 h-5 flex-shrink-0" />
                   <span>Home</span>
@@ -127,7 +127,7 @@ export default function Header() {
                 <Link
                   to="/all-posts"
                   onClick={closeSidebar}
-                  className="flex items-center gap-3 w-full px-4 py-3 text-gray-300 font-semibold hover:bg-blue-600/20 hover:text-white rounded-lg transition-all duration-200"
+                  className="flex items-center gap-3 w-full px-4 py-3 text-gray-400 font-semibold hover:bg-gray-800 hover:text-white rounded-lg transition-all duration-200"
                 >
                   <span className="text-lg">📋</span>
                   <span>All Posts</span>
@@ -135,18 +135,18 @@ export default function Header() {
                 <Link
                   to="/dox-anyone"
                   onClick={closeSidebar}
-                  className="flex items-center gap-3 w-full px-4 py-3 text-white font-semibold hover:bg-blue-600 rounded-lg transition-all duration-200 bg-blue-600/30"
+                  className="flex items-center gap-3 w-full px-4 py-3 text-white font-semibold hover:bg-gray-700 rounded-lg transition-all duration-200 bg-gray-700"
                 >
                   <SearchAltIcon className="w-5 h-5 flex-shrink-0" />
                   <span>Dox Anyone</span>
                 </Link>
                 {isAuthenticated && (
                   <>
-                    <div className="my-2 border-t border-slate-700" />
+                    <div className="my-2 border-t border-gray-700" />
                     <Link
                       to="/uppostpanel"
                       onClick={closeSidebar}
-                      className="flex items-center gap-3 w-full px-4 py-3 text-gray-300 font-semibold hover:bg-blue-600/20 hover:text-white rounded-lg transition-all duration-200"
+                      className="flex items-center gap-3 w-full px-4 py-3 text-gray-400 font-semibold hover:bg-gray-800 hover:text-white rounded-lg transition-all duration-200"
                     >
                       <UploadIcon className="w-5 h-5 flex-shrink-0" />
                       <span>Upload Post</span>
@@ -154,7 +154,7 @@ export default function Header() {
                     <Link
                       to="/admin-panel"
                       onClick={closeSidebar}
-                      className="flex items-center gap-3 w-full px-4 py-3 text-white font-semibold hover:bg-yellow-600/40 rounded-lg transition-all duration-200 bg-yellow-600/20"
+                      className="flex items-center gap-3 w-full px-4 py-3 text-white font-semibold hover:bg-gray-600 rounded-lg transition-all duration-200 bg-gray-600"
                     >
                       <SettingsIcon className="w-5 h-5 flex-shrink-0" />
                       <span>Admin Panel</span>
@@ -163,10 +163,10 @@ export default function Header() {
                 )}
               </nav>
               {isAuthenticated && (
-                <div className="p-4 border-t border-slate-700">
+                <div className="p-4 border-t border-gray-700">
                   <button
                     onClick={handleLogout}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold rounded-lg hover:from-red-700 hover:to-red-800 transition-all duration-200 shadow-md"
+                    className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-500 text-white font-semibold rounded-lg hover:bg-gray-400 transition-all duration-200 shadow-md"
                   >
                     <LogOut className="w-4 h-4" />
                     <span>Logout</span>
