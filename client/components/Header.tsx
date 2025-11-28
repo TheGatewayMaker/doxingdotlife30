@@ -23,13 +23,13 @@ export default function Header() {
   };
 
   return (
-    <header className="w-full bg-gradient-to-r from-slate-900/95 to-slate-800/95 backdrop-blur-md border-b border-blue-500/30 shadow-lg animate-fadeIn sticky top-0 z-40">
+    <header className="w-full bg-gradient-to-r from-gray-950 to-gray-900 backdrop-blur-md border-b border-gray-700 shadow-lg animate-fadeIn sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         <Link
           to="/"
           className="flex items-center gap-2 sm:gap-3 hover:opacity-90 transition-opacity flex-shrink-0"
         >
-          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden shadow-md flex-shrink-0 ring-2 ring-blue-500/40">
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden shadow-md flex-shrink-0">
             <img
               src="https://i.ibb.co/rG8yDddq/doxingdotlifelogogeniune888175141.png"
               alt="Doxing Dot Life Logo"
