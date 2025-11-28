@@ -32,7 +32,9 @@ const getR2Client = (): S3Client => {
     console.error("Missing R2 env variables:", missing);
     console.error(
       "Available env keys:",
-      Object.keys(process.env).filter((k) => k.startsWith("R2_") || k.startsWith("VITE_")),
+      Object.keys(process.env).filter(
+        (k) => k.startsWith("R2_") || k.startsWith("VITE_"),
+      ),
     );
     console.error("Environment:", process.env.NODE_ENV);
 
