@@ -58,15 +58,28 @@ export const handler = async (event: any, context: any) => {
     // Set a longer timeout for the context
     context.callbackWaitsForEmptyEventLoop = false;
 
+    console.log(
+      `[${new Date().toISOString()}] Incoming ${event.httpMethod} ${event.path}`,
+    );
+
     const handler = getServerlessHandler();
     const result = await handler(event, context);
 
     return result;
   } catch (error) {
-    console.error("Handler error:", error);
+    const errorMessage =
+      error instanceof Error ? error.message : String(error);
+    console.error(
+      `[${new Date().toISOString()}] ❌ Handler error:`,
+      errorMessage,
+    );
     console.error("Error details:", {
-      message: error instanceof Error ? error.message : String(error),
+      message: errorMessage,
       stack: error instanceof Error ? error.stack : undefined,
+      event: {
+        httpMethod: event.httpMethod,
+        path: event.path,
+      },
     });
 
     return {
@@ -75,10 +88,8 @@ export const handler = async (event: any, context: any) => {
         error: "Internal server error",
         details:
           process.env.NODE_ENV === "development"
-            ? error instanceof Error
-              ? error.message
-              : String(error)
-            : undefined,
+            ? errorMessage
+            : "An unexpected error occurred on the server.",
       }),
       headers: {
         "Content-Type": "application/json",
