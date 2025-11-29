@@ -568,6 +568,98 @@ export default function UppostPanel() {
               {uploading ? "Uploading..." : "Upload Post"}
             </button>
           </form>
+
+          {/* Delete Posts Section */}
+          <div className="mt-16 animate-fadeIn" style={{ animationDelay: "0.3s" }}>
+            <h2 className="text-3xl md:text-4xl font-black mb-8">
+              🗑️ Manage Posts
+            </h2>
+
+            {loadingPosts ? (
+              <div className="text-center py-12">
+                <div className="inline-block animate-spin mb-4">
+                  <div className="w-12 h-12 border-4 border-muted border-t-accent rounded-full"></div>
+                </div>
+                <p className="text-muted-foreground">Loading posts...</p>
+              </div>
+            ) : posts.length === 0 ? (
+              <div className="bg-card border border-border rounded-xl p-8 text-center shadow-lg">
+                <p className="text-muted-foreground text-lg">
+                  No posts available to delete
+                </p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {posts.map((post) => (
+                  <div
+                    key={post.id}
+                    className="bg-card border border-border rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  >
+                    {post.thumbnail && (
+                      <div className="w-full h-40 bg-muted overflow-hidden">
+                        <img
+                          src={post.thumbnail}
+                          alt={post.title}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).style.display =
+                              "none";
+                          }}
+                        />
+                      </div>
+                    )}
+
+                    <div className="p-6">
+                      <h3 className="font-bold text-lg mb-2 line-clamp-2 text-foreground">
+                        {post.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                        {post.description}
+                      </p>
+
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {post.country && (
+                          <span className="inline-block bg-accent/20 text-accent px-2 py-1 rounded text-xs font-medium">
+                            {post.country}
+                          </span>
+                        )}
+                        {post.city && (
+                          <span className="inline-block bg-accent/20 text-accent px-2 py-1 rounded text-xs font-medium">
+                            {post.city}
+                          </span>
+                        )}
+                        {post.server && (
+                          <span className="inline-block bg-accent/20 text-accent px-2 py-1 rounded text-xs font-medium">
+                            {post.server}
+                          </span>
+                        )}
+                      </div>
+
+                      <p className="text-xs text-muted-foreground mb-4">
+                        Posted:{" "}
+                        {new Date(post.createdAt).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </p>
+
+                      <button
+                        onClick={() => handleDeletePost(post.id)}
+                        disabled={deletingPostId === post.id}
+                        className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-destructive text-destructive-foreground font-bold rounded-lg hover:bg-destructive/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-95"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                        {deletingPostId === post.id ? "Deleting..." : "Delete"}
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </main>
       <Footer />
